@@ -2,8 +2,6 @@ import xlrd
 
 def main():
     workbook = xlrd.open_workbook("NCEI_test01.xlsx")
-    for sheet in sheets:
-        parse(sheet)
 
 def get_all_sheets(workbook):
     sheets = []
