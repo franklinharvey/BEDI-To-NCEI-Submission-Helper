@@ -24,45 +24,10 @@ def get_all_people(workbook):
     `cell` objects accept row first and then column such as `sheet.cell(row,col).value`
     '''
     sheet = workbook.sheet_by_index(0)
-    people = {}
+    people = []
     for row in range(2,sheet.nrows):
-        people[row] = {}
-        people[row]['first'] = get_first_name(sheet,row)
-
-        if get_middle_name(sheet,row) != empty_cell():
-            people[row]['middle'] = get_middle_name(sheet,row)
-
-        people[row]['last'] = get_last_name(sheet,row)
-        people[row]['role'] = get_role(sheet,row)
-
-        if get_email(sheet,row) != empty_cell():
-            people[row]['email'] = get_email(sheet,row)
-
-        if institution(sheet,row) != empty_cell():
-            people[row]['institution'] = get_institution(sheet,row)
-
+        people.append(sheet.row_values(row,end_colx=6))
     return people
-
-def get_first_name(sheet,row):
-    return sheet.cell(row,0).value
-
-def get_middle_name(sheet,row):
-    return sheet.cell(row,1).value
-
-def get_last_name(sheet,row):
-    return sheet.cell(row,2).value
-
-def get_role(sheet,row):
-    return sheet.cell(row,3).value
-
-def get_email(sheet,row):
-    return sheet.cell(row,4).value
-
-def get_institution(sheet,row):
-    return sheet.cell(row,5).value
-
- # def get_cell(sheet,row,col):
- #    return sheet.cell(row,col).value
 
 def get_all_variables():
     pass
