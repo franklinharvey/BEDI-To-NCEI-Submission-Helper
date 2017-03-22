@@ -2,10 +2,15 @@ import xlrd
 
 def main():
     workbook = xlrd.open_workbook("NCEI_test01.xlsx")
-    print get_funding_agencies(workbook)
-    print get_all_projects(workbook)
-    print get_all_people(workbook)
+    # print get_all_people(workbook)
     print get_all_variables(workbook)
+    # print get_funding_agencies(workbook)
+    # print get_all_projects(workbook)
+    # print get_dates(workbook)
+    # print get_boundaries(workbook)
+    # print get_ships(workbook)
+    # print get_sea_areas(workbook)
+    # print get_package_descriptions(workbook)
 
 def get_all_sheets(workbook):
     sheets = []
@@ -36,7 +41,7 @@ def get_all_variables(workbook):
     variables = []
     for row in range(2,sheet.nrows):
         variables.append(sheet.row_values(row))
-    return variables
+    return filter_list(variables)
 
 def get_funding_agencies(workbook):
     sheet = workbook.sheet_by_index(0)
@@ -77,6 +82,15 @@ def get_sea_areas(workbook):
 def get_package_descriptions(workbook):
     sheet = workbook.sheet_by_index(3)
     return sheet.row_values(2)
+
+def filter_list(itemList):
+    for i in itemList:
+        if i:
+            pass
+        else:
+            i = 9
+    return itemList
+
 
 if __name__ == '__main__':
     main()
