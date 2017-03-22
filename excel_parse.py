@@ -14,8 +14,21 @@ def get_sheet_data(sheet):
     for n in range(sheet.ncols):
         print n
 
-def get_all_people(workbook):
-    pass
+def get_all_people(workbook,row,two):
+    '''
+    This will return a dictionary of all the people listed in the workbook.
+
+    Columns 0-4 are each tied to one person per row.
+    Columns 1 and 4 are not required (these are the middle name and email fields).
+
+    `cell` objects accept row first and then column such as `sheet.cell(row,col).value`
+    '''
+    sheet = workbook.sheet_by_index(0)
+    people = []
+    for i in range(sheet.nrows):
+        for j in range(sheet.ncols):
+            sheet.cell(i,j).value
+
 
 def get_all_variables():
     pass
