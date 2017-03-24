@@ -1,2 +1,2 @@
-# NOAA-OAR-GMD-To-NCEI-Submission-Helper
-This is designed to help keep track of metadata in a dataset and add it to existing NetCDF4 files.
+# BEDI To NCEI Submission Helper
+This is python package designed to parse an excel file (which contains all the fields in the NCEI's S2N webform).
