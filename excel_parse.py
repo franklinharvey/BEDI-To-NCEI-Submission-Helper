@@ -1,9 +1,9 @@
 import xlrd
 
 def main():
-    workbook = xlrd.open_workbook("NCEI_test01.xlsx")
+    wb = xlrd.open_workbook("NCEI_test01.xlsx")
     # print get_all_people(workbook)
-    print get_all_variables(workbook)
+    # print get_all_variables(workbook)
     # print get_funding_agencies(workbook)
     # print get_all_projects(workbook)
     # print get_dates(workbook)
@@ -12,17 +12,21 @@ def main():
     # print get_sea_areas(workbook)
     # print get_package_descriptions(workbook)
 
+    va = get_all_variables(wb)
+    print filter_list(va)
+
 def get_all_people(workbook):
     '''
-    This will return an array of all the people listed in the workbook.
+    Input: workbook
+    Output: nested array of people
 
     Columns 0-5 are each tied to one person per row.
-    Columns 1, 4, 5 are not required (these are the middle name and email fields).
+    Columns 1, 4, 5 are not required (these are the middle name, email, and institution fields).
     '''
     sheet = workbook.sheet_by_index(0)
     people = []
     for row in range(2,sheet.nrows):
-        people.append(sheet.row_values(row,end_colx=6))
+        people.append(sheet.row_values(row, end_colx=6))
     return people
 
 def get_all_variables(workbook):
@@ -79,11 +83,11 @@ def get_explanations(sheet):
     return sheet.row_values(0)
 
 def filter_list(itemList):
-    for i in itemList:
-        if i:
+    for i, item in enumerate(itemList):
+        if itemList[i]:
             pass
         else:
-            i = 9
+            print "HERE"
     return itemList
 
 
