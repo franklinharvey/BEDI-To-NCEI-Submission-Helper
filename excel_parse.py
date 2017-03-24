@@ -12,7 +12,7 @@ def main():
     # print get_sea_areas(workbook)
     # print get_package_descriptions(workbook)
 
-    va = get_all_variables(wb)
+    va = get_explanations(wb.sheet_by_index(0))
     print filter_list(va)
 
 def get_all_people(workbook):
@@ -82,9 +82,9 @@ def get_headers(sheet):
 def get_explanations(sheet):
     return sheet.row_values(0)
 
-def filter_list(itemList):
+def filter_list(itemList, replace=False):
     nested = any(isinstance(i, list) for i in itemList)
-
+    print itemList
     if nested: # if nested
         for subList in itemList:
             for item in subList:
@@ -94,6 +94,7 @@ def filter_list(itemList):
                     subList.remove(item)
     else: # if not
         for item in itemList:
+            print item
             if item:
                 pass
             else:
