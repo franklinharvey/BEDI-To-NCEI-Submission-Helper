@@ -1,8 +1,9 @@
 import xlrd
+import sys
 
-def main():
+def main(argv):
     log = ""
-    workbook = xlrd.open_workbook("NCEI_test01.xlsx")
+    workbook = xlrd.open_workbook(argv[0])
     log += "People: {}\n".format(filter_list(get_all_people(workbook)))
     log += "Funding Agencies: {}\n".format(filter_list(get_funding_agencies(workbook)))
     log += "Projects: {}\n".format(filter_list(get_all_projects(workbook)))
@@ -13,7 +14,7 @@ def main():
     log += "Sea Areas: {}\n".format(filter_list(get_sea_areas(workbook)))
     log += "Package Description: {}\n".format(filter_list(get_package_descriptions(workbook)))
 
-    with open("log.txt", 'w+') as logFile:
+    with open("../log.txt", 'w+') as logFile:
         logFile.write(log)
 
 def get_all_people(workbook):
@@ -159,4 +160,4 @@ def determine(element):
         return True
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])
