@@ -64,7 +64,12 @@ def get_all_projects(workbook):
     return projects
 
 def get_dates(workbook):
-    '''DOES NOT WORK'''
+    '''
+    Input: workbook
+    Output: array of dates
+
+    Note: If not working properly, please read 'date-helper.txt'
+    '''
     sheet = workbook.sheet_by_index(1)
     return sheet.row_values(2,end_colx=2)
 

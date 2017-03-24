@@ -2,7 +2,7 @@ People: [[u'first', u'middle', u'last', u'role', u'email'], [u'first2', u'last2'
 Funding Agencies: [u'funding2']
 Projects: [u'project']
 Variables: [[u'variable1', u'measured', u'units1', u'observationcat', u'sample', u'datamethod'], [u'variable2', u'measured2', u'units2', u'observationcat2', u'sample2', u'samplemethod2']]
-Dates: [42815.0, 42815.0]
+Dates: [u'2017-03-20', u'2017-03-24']
 Boundaries: [-89.12345, 89.12345, -179.12345, 179.12345]
 Ships: [u'ship2']
 Sea Areas: [u'sea']
