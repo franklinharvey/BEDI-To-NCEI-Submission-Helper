@@ -21,7 +21,7 @@ def get_all_people(workbook):
     Output: array of people (nested if multiple rows)
 
     Columns 0-5 are each tied to one person per row.
-    Columns 1, 4, 5 are not required (these are the middle name, email, and institution fields).
+    Columns 1, 4, 5 are not required.
     '''
     sheet = workbook.sheet_by_index(0)
     people = []
@@ -52,6 +52,10 @@ def get_funding_agencies(workbook):
     return agencies
 
 def get_all_projects(workbook):
+    '''
+    Input: workbook
+    Output: array of projects
+    '''
     sheet = workbook.sheet_by_index(0)
     projects = []
     for row in range(2,sheet.nrows):
@@ -64,10 +68,18 @@ def get_dates(workbook):
     return sheet.row_values(2,end_colx=2)
 
 def get_boundaries(workbook):
+    '''
+    Input: workbook
+    Output: array of boundaries
+    '''
     sheet = workbook.sheet_by_index(1)
     return sheet.row_values(2,start_colx=2,end_colx=6)
 
 def get_ships(workbook):
+    '''
+    Input: workbook
+    Output: array of ships
+    '''
     sheet = workbook.sheet_by_index(1)
     ships = []
     for row in range(2,sheet.nrows):
@@ -75,6 +87,10 @@ def get_ships(workbook):
     return ships
 
 def get_sea_areas(workbook):
+    '''
+    Input: workbook
+    Output: array of sea areas
+    '''
     sheet = workbook.sheet_by_index(1)
     sea_areas = []
     for row in range(2,sheet.nrows):
@@ -82,16 +98,32 @@ def get_sea_areas(workbook):
     return sea_areas
 
 def get_package_descriptions(workbook):
+    '''
+    Input: workbook
+    Output: array of package description elements
+    '''
     sheet = workbook.sheet_by_index(3)
     return sheet.row_values(2)
 
 def get_headers(sheet):
+    '''
+    Input: sheet
+    Output: array of headers
+    '''
     return sheet.row_values(1)
 
 def get_explanations(sheet):
+    '''
+    Input: sheet
+    Output: array of header explanations
+    '''
     return sheet.row_values(0)
 
 def filter_list(itemList, replace=False):
+    '''
+    Input: list
+    Output: list with empty elements removed
+    '''
     nested = any(isinstance(i, list) for i in itemList)
     print "Input list: {}".format(itemList)
     print "Is nested: {}".format(nested)
@@ -108,8 +140,12 @@ def filter_list(itemList, replace=False):
     print "Output list: {}".format(itemList)
     return itemList
 
-def determine(item):
-    if item:
+def determine(element):
+    '''
+    Input: element
+    Output: Boolean
+    '''
+    if element: #checking to see if element needs to be deleted
         return False
     else:
         return True
