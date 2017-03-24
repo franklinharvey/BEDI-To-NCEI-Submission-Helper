@@ -13,12 +13,12 @@ def main():
     # print get_package_descriptions(workbook)
 
     va = get_explanations(wb.sheet_by_index(0))
-    print filter_list(va)
+    filter_list(va)
 
 def get_all_people(workbook):
     '''
     Input: workbook
-    Output: nested array of people
+    Output: array of people (nested if multiple rows)
 
     Columns 0-5 are each tied to one person per row.
     Columns 1, 4, 5 are not required (these are the middle name, email, and institution fields).
@@ -30,6 +30,10 @@ def get_all_people(workbook):
     return people
 
 def get_all_variables(workbook):
+    '''
+    Input: workbook
+    Output: array of variables (nested if multiple rows)
+    '''
     sheet = workbook.sheet_by_index(2)
     variables = []
     for row in range(2,sheet.nrows):
@@ -37,6 +41,10 @@ def get_all_variables(workbook):
     return variables
 
 def get_funding_agencies(workbook):
+    '''
+    Input: workbook
+    Output: array of funding agencies
+    '''
     sheet = workbook.sheet_by_index(0)
     agencies = []
     for row in range(2,sheet.nrows):
@@ -51,6 +59,7 @@ def get_all_projects(workbook):
     return projects
 
 def get_dates(workbook):
+    '''DOES NOT WORK'''
     sheet = workbook.sheet_by_index(1)
     return sheet.row_values(2,end_colx=2)
 
@@ -84,7 +93,8 @@ def get_explanations(sheet):
 
 def filter_list(itemList, replace=False):
     nested = any(isinstance(i, list) for i in itemList)
-    print itemList
+    print "Input list: {}".format(itemList)
+    print "Is nested: {}".format(nested)
     if nested: # if nested
         for subList in itemList:
             for item in subList:
@@ -93,13 +103,16 @@ def filter_list(itemList, replace=False):
                 else:
                     subList.remove(item)
     else: # if not
-        for item in itemList:
-            print item
-            if item:
-                pass
-            else:
-                itemList.remove(item)
+        itemList[:] = [x for x in itemList if not determine(x)]
+
+    print "Output list: {}".format(itemList)
     return itemList
+
+def determine(item):
+    if item:
+        return False
+    else:
+        return True
 
 if __name__ == '__main__':
     main()
