@@ -1,19 +1,20 @@
 import xlrd
 
 def main():
-    wb = xlrd.open_workbook("NCEI_test01.xlsx")
-    # print get_all_people(workbook)
-    # print get_all_variables(workbook)
-    # print get_funding_agencies(workbook)
-    # print get_all_projects(workbook)
-    # print get_dates(workbook)
-    # print get_boundaries(workbook)
-    # print get_ships(workbook)
-    # print get_sea_areas(workbook)
-    # print get_package_descriptions(workbook)
+    log = ""
+    workbook = xlrd.open_workbook("NCEI_test01.xlsx")
+    log += "{}\n".format(filter_list(get_all_people(workbook)))
+    log += "{}\n".format(filter_list(get_funding_agencies(workbook)))
+    log += "{}\n".format(filter_list(get_all_projects(workbook)))
+    log += "{}\n".format(filter_list(get_all_variables(workbook)))
+    log += "{}\n".format(get_dates(workbook))
+    log += "{}\n".format(get_boundaries(workbook))
+    log += "{}\n".format(filter_list(get_ships(workbook)))
+    log += "{}\n".format(filter_list(get_sea_areas(workbook)))
+    log += "{}\n".format(filter_list(get_package_descriptions(workbook)))
 
-    va = get_explanations(wb.sheet_by_index(0))
-    filter_list(va)
+    with open("log.txt", 'w+') as logFile:
+        logFile.write(log)
 
 def get_all_people(workbook):
     '''
@@ -119,14 +120,15 @@ def get_explanations(sheet):
     '''
     return sheet.row_values(0)
 
-def filter_list(itemList, replace=False):
+def filter_list(itemList, replace=False, test=False):
     '''
     Input: list
     Output: list with empty elements removed
     '''
     nested = any(isinstance(i, list) for i in itemList)
-    print "Input list: {}".format(itemList)
-    print "Is nested: {}".format(nested)
+    if test:
+        print "Input list: {}".format(itemList)
+        print "Is nested: {}".format(nested)
     if nested: # if nested
         for subList in itemList:
             for item in subList:
@@ -137,7 +139,8 @@ def filter_list(itemList, replace=False):
     else: # if not
         itemList[:] = [x for x in itemList if not determine(x)]
 
-    print "Output list: {}".format(itemList)
+    if test:
+        print "Output list: {}".format(itemList)
     return itemList
 
 def determine(element):
