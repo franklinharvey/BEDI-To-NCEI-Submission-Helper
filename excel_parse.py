@@ -3,15 +3,15 @@ import xlrd
 def main():
     log = ""
     workbook = xlrd.open_workbook("NCEI_test01.xlsx")
-    log += "{}\n".format(filter_list(get_all_people(workbook)))
-    log += "{}\n".format(filter_list(get_funding_agencies(workbook)))
-    log += "{}\n".format(filter_list(get_all_projects(workbook)))
-    log += "{}\n".format(filter_list(get_all_variables(workbook)))
-    log += "{}\n".format(get_dates(workbook))
-    log += "{}\n".format(get_boundaries(workbook))
-    log += "{}\n".format(filter_list(get_ships(workbook)))
-    log += "{}\n".format(filter_list(get_sea_areas(workbook)))
-    log += "{}\n".format(filter_list(get_package_descriptions(workbook)))
+    log += "People: {}\n".format(filter_list(get_all_people(workbook)))
+    log += "Funding Agencies: {}\n".format(filter_list(get_funding_agencies(workbook)))
+    log += "Projects: {}\n".format(filter_list(get_all_projects(workbook)))
+    log += "Variables: {}\n".format(filter_list(get_all_variables(workbook)))
+    log += "Dates: {}\n".format(get_dates(workbook))
+    log += "Boundaries: {}\n".format(get_boundaries(workbook))
+    log += "Ships: {}\n".format(filter_list(get_ships(workbook)))
+    log += "Sea Areas: {}\n".format(filter_list(get_sea_areas(workbook)))
+    log += "Package Description: {}\n".format(filter_list(get_package_descriptions(workbook)))
 
     with open("log.txt", 'w+') as logFile:
         logFile.write(log)
