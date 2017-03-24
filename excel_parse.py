@@ -34,7 +34,7 @@ def get_all_variables(workbook):
     variables = []
     for row in range(2,sheet.nrows):
         variables.append(sheet.row_values(row))
-    return filter_list(variables)
+    return variables
 
 def get_funding_agencies(workbook):
     sheet = workbook.sheet_by_index(0)
@@ -83,13 +83,22 @@ def get_explanations(sheet):
     return sheet.row_values(0)
 
 def filter_list(itemList):
-    for i, item in enumerate(itemList):
-        if itemList[i]:
-            pass
-        else:
-            print "HERE"
-    return itemList
+    nested = any(isinstance(i, list) for i in itemList)
 
+    if nested: # if nested
+        for subList in itemList:
+            for item in subList:
+                if item:
+                    pass
+                else:
+                    subList.remove(item)
+    else: # if not
+        for item in itemList:
+            if item:
+                pass
+            else:
+                itemList.remove(item)
+    return itemList
 
 if __name__ == '__main__':
     main()
