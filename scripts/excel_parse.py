@@ -68,7 +68,7 @@ def get_dates(workbook):
     Input: workbook
     Output: array of dates
 
-    Note: If not working properly, please read 'date-helper.txt'
+    Note: If not working properly, please read 'date-helper.md'
     '''
     sheet = workbook.sheet_by_index(1)
     return sheet.row_values(2,end_colx=2)
