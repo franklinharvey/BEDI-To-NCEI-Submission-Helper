@@ -12,17 +12,6 @@ def main():
     # print get_sea_areas(workbook)
     # print get_package_descriptions(workbook)
 
-def get_all_sheets(workbook):
-    sheets = []
-    for n in range(workbook.nsheets):
-        sheets.append(workbook.sheet_by_index(n))
-    return sheets
-
-def get_sheet_data(sheet):
-    sheetArray = []
-    for n in range(sheet.ncols):
-        print n
-
 def get_all_people(workbook):
     '''
     This will return an array of all the people listed in the workbook.
@@ -82,6 +71,12 @@ def get_sea_areas(workbook):
 def get_package_descriptions(workbook):
     sheet = workbook.sheet_by_index(3)
     return sheet.row_values(2)
+
+def get_headers(sheet):
+    return sheet.row_values(1)
+
+def get_explanations(sheet):
+    return sheet.row_values(0)
 
 def filter_list(itemList):
     for i in itemList:
