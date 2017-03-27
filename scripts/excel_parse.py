@@ -3,6 +3,7 @@ import sys
 
 def main(argv):
     workbook = xlrd.open_workbook(argv[0])
+    log(workbook)
 
 def log(workbook, output="../log.txt"):
     log = ""
