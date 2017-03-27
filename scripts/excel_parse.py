@@ -146,7 +146,7 @@ def filter_list(itemList, replace=False, test=False):
                 else:
                     subList.remove(item)
     else: # if not
-        itemList[:] = [x for x in itemList if not determine(x)]
+        itemList[:] = [x for x in itemList if determine(x)]
 
     if test:
         print "Output list: {}".format(itemList)
@@ -158,9 +158,9 @@ def determine(element):
     Output: Boolean
     '''
     if element: #checking to see if element needs to be deleted
-        return False
-    else:
         return True
+    else:
+        return False
 
 if __name__ == '__main__':
     main(sys.argv[1:])
