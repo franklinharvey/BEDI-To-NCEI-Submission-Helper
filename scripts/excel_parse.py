@@ -2,8 +2,10 @@ import xlrd
 import sys
 
 def main(argv):
-    log = ""
     workbook = xlrd.open_workbook(argv[0])
+
+def log(workbook, output="../log.txt"):
+    log = ""
     log += "People: {}\n".format(filter_list(get_all_people(workbook)))
     log += "Funding Agencies: {}\n".format(filter_list(get_funding_agencies(workbook)))
     log += "Projects: {}\n".format(filter_list(get_all_projects(workbook)))
@@ -14,7 +16,7 @@ def main(argv):
     log += "Sea Areas: {}\n".format(filter_list(get_sea_areas(workbook)))
     log += "Package Description: {}\n".format(filter_list(get_package_descriptions(workbook)))
 
-    with open("../log.txt", 'w+') as logFile:
+    with open(output, 'w+') as logFile:
         logFile.write(log)
 
 def get_all_people(workbook):
